@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -132,8 +133,13 @@ class RegisterController extends Controller
             $user->assignRole(Role::findByName('user'));
         }
 
-        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is $username and password is $password. Thanks for using UOSCS.";
+        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is: $username  and password is:  $password  . Thanks for using UOSCS.";
         try {
+            Message::create([
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'body' => $sms,
+            ]);
             sendEmail($user->email, $user->name, 'NEW REGISTRATION', $sms);
 
         } catch (\Throwable $th) {

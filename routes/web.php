@@ -8,6 +8,8 @@ use App\Http\Controllers\ClearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClearanceController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\MessageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -133,4 +135,31 @@ Route::prefix('/')
             ClearController::class,
             'destroy',
         ])->name('clears.destroy');
+
+        Route::get('messages', [MessageController::class, 'index'])->name(
+            'messages.index'
+        );
+        Route::post('messages', [MessageController::class, 'store'])->name(
+            'messages.store'
+        );
+        Route::get('messages/create', [
+            MessageController::class,
+            'create',
+        ])->name('messages.create');
+        Route::get('messages/{message}', [
+            MessageController::class,
+            'show',
+        ])->name('messages.show');
+        Route::get('messages/{message}/edit', [
+            MessageController::class,
+            'edit',
+        ])->name('messages.edit');
+        Route::put('messages/{message}', [
+            MessageController::class,
+            'update',
+        ])->name('messages.update');
+        Route::delete('messages/{message}', [
+            MessageController::class,
+            'destroy',
+        ])->name('messages.destroy');
     });

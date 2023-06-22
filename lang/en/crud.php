@@ -95,6 +95,20 @@ return [
         ],
     ],
 
+    'messages' => [
+        'name' => 'Messages',
+        'index_title' => 'Messages List',
+        'new_title' => 'New Message',
+        'create_title' => 'Create Message',
+        'edit_title' => 'Edit Message',
+        'show_title' => 'Show Message',
+        'inputs' => [
+            'user_id' => 'User',
+            'email' => 'Email',
+            'body' => 'Body',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

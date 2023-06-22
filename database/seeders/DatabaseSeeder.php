@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ClearSeeder::class);
         $this->call(ClearanceSeeder::class);
+        $this->call(MessageSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(UserSeeder::class);
     }

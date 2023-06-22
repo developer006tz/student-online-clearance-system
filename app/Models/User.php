@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->hasMany(Clear::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     public function isSuperAdmin(): bool
     {
         return $this->hasRole('super-admin');

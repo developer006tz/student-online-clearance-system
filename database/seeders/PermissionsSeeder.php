@@ -33,6 +33,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update students']);
         Permission::create(['name' => 'delete students']);
 
+        Permission::create(['name' => 'list messages']);
+        Permission::create(['name' => 'view messages']);
+        Permission::create(['name' => 'create messages']);
+        Permission::create(['name' => 'update messages']);
+        Permission::create(['name' => 'delete messages']);
+
         $currentPermissions = Permission::all();
         $roles = ['user','student', 'hall-wadern','librarian-udsm','librarian-cse','coordinator','principal','smart-card'];
         foreach ($roles as $role) {

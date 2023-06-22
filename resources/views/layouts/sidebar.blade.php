@@ -56,6 +56,15 @@
                             </li>
                             @endcan
 
+                            @can('view-any', App\Models\Message::class)
+                            <li class="nav-item">
+                                <a href="{{ route('messages.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-comments"></i>
+                                    <p>Messages</p>
+                                </a>
+                            </li>
+                            @endcan
+
                 @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
                     Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
                 <li class="nav-item">

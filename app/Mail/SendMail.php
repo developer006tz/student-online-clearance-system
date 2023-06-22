@@ -30,7 +30,7 @@ class SendMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('developer@ludovickonyo.com', 'NATIONAL ISTITUTE OF TRANSPORT'),
+            from: new Address('developer@ludovickonyo.com', 'UDSM ONLINE CLEARANCE'),
             to: [new Address($this->data['to'], $this->data['name'])],
             subject: $this->data['subject'],
         );

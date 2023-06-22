@@ -8,7 +8,7 @@
             <div class="container">
                  <div class="header">
                      <div class="logo" style="width:52px;heigh:52px;" >
-                       <img src="https://ucarecdn.com/0b8f83da-df07-4781-9a3d-a17ed608d3dc/udsmlogo.png" alt="udsm-logo" />
+                       <img src="https://ucarecdn.com/0b8f83da-df07-4781-9a3d-a17ed608d3dc/udsmlogo.png" width="52" height="52" alt="udsm-logo" />
                      </div>
                      </div> 
                 <div class="content">
