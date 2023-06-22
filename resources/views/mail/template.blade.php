@@ -15,8 +15,8 @@
                    <h2  style="font-size:21px;" >Hellow {{$name}}</h2>
                     <p>{{ $test_message }}</p> </div> 
 					<div class="footer">
-					<p><a href="{{route('home')}}" style="color: #fff;">
-					© UDSM ONLINE CLEARANCE |</a> All Right Reserved</p>
+					<p>
+					© UDSM ONLINE CLEARANCE |All Right Reserved</p>
 					</div>
 					</div>
                  </body>
