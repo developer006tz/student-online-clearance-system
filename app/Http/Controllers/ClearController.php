@@ -22,12 +22,23 @@ class ClearController extends Controller
 
         $search = $request->get('search', '');
 
-        $clears = Clear::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
+        //check is the user is not super-admin to show only his/her clear
+        if (auth()->user()->hasRole('super-admin')) {
+            $clears = Clear::search($search)
+                ->latest()
+                ->paginate(5)
+                ->withQueryString();
 
-        return view('app.clears.index', compact('clears', 'search'));
+            return view('app.clears.index', compact('clears', 'search'));
+        } else {
+            $clears = Clear::search($search)
+                ->where('user_id', auth()->user()->id)
+                ->latest()
+                ->paginate(5)
+                ->withQueryString();
+
+            return view('app.clears.index', compact('clears', 'search'));
+        }
     }
 
     /**

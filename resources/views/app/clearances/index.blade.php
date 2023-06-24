@@ -103,11 +103,11 @@
                             <td>{{ $clearance->room_number ?? '-' }}</td>
                             <td>{{ $clearance->level ?? '-' }}</td>
                             <td>{{ $clearance->wadern ?? '-' }}</td>
-                            <td>{{ $clearance->librarian-udsm ?? '-' }}</td>
-                            <td>{{ $clearance->librarian-cse ?? '-' }}</td>
+                            <td>{{ $clearance->{'librarian-udsm'} ?? '-' }}</td>
+                            <td>{{ $clearance->{'librarian-cse'} ?? '-' }}</td>
                             <td>{{ $clearance->coordinator ?? '-' }}</td>
                             <td>{{ $clearance->principal ?? '-' }}</td>
-                            <td>{{ $clearance->smart-card ?? '-' }}</td>
+                            <td>{{ $clearance->{'smart-card'} ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"

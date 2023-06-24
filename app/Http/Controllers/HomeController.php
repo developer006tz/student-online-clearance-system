@@ -29,14 +29,15 @@ class HomeController extends Controller
     public function index()
     {
         //get loged in user
-
-        $role = Auth::user()->getRoleNames()[0];
         $user = Auth::user();
+        $role = $user->getRoleNames()[0];
+       
          $student = Student::where('user_id', $user->id)->first();
         //get clearances of loged in student
         if ($role == 'student' && $student) {
             $clearances = Clearance::where('student_id', $user->student->id)->get();
-            return view('home', compact('user', 'role', 'student', 'clearances'));
+            $clearance = Clearance::where('student_id', $user->student->id)->first();
+            return view('home', compact('user', 'role', 'student', 'clearances', 'clearance'));
         }elseif($role != 'student' && $role != 'super-admin'){
             if(!empty($user)){
                 $clearances = Clear::where('user_id', $user->id)->get();

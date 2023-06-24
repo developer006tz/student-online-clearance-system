@@ -97,6 +97,16 @@ Route::prefix('/')
         Route::post('clearances', [ClearanceController::class, 'store'])->name(
             'clearances.store'
         );
+        Route::any('create-clearance/{student}', [
+            ClearanceController::class,
+            'request_clearance',
+        ])->name('create-clearance.store');
+
+        Route::post('clearances/{clearance}/reject', [
+            ClearanceController::class,
+            'reject',
+        ])->name('clearances.reject');
+
         Route::get('clearances/create', [
             ClearanceController::class,
             'create',

@@ -45,11 +45,11 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.clearances.inputs.librarian-udsm')</h5>
-                    <span>{{ $clearance->librarian-udsm ?? '-' }}</span>
+                    <span>{{ $clearance->{'librarian-udsm'} ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.clearances.inputs.librarian-cse')</h5>
-                    <span>{{ $clearance->librarian-cse ?? '-' }}</span>
+                    <span>{{ $clearance->{'librarian-cse'} ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.clearances.inputs.coordinator')</h5>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.clearances.inputs.smart-card')</h5>
-                    <span>{{ $clearance->smart-card ?? '-' }}</span>
+                    <span>{{ $clearance->{'smart-card'} ?? '-' }}</span>
                 </div>
             </div>
 

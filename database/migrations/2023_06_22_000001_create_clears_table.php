@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('clearance_id');
             $table->unsignedBigInteger('user_id');
             $table->string('role');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->enum('signature', ['0', '1'])->default('0');
             $table->date('date')->default(now());
             $table

@@ -37,4 +37,24 @@ class Clearance extends Model
     {
         return $this->hasMany(Clear::class);
     }
+
+    public function complated_clears()
+    {
+        $clears= $this->hasMany(Clear::class)->where('status', '1');
+        if ($clears->count() == 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function pending()
+    {
+        return $this->hasMany(Clear::class)->where('status', '0')->count();
+    }
+
+    public function cleared()
+    {
+        return $this->hasMany(Clear::class)->where('status', '1')->count();
+    }
 }

@@ -26,8 +26,8 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function clearances()
+    public function clearance()
     {
-        return $this->hasMany(Clearance::class);
+        return $this->hasOne(Clearance::class);
     }
 }

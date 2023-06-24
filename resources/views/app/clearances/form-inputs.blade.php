@@ -76,7 +76,7 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="librarian-udsm" label="Librarian Udsm">
-            @php $selected = old('librarian-udsm', ($editing ? $clearance->librarian-udsm : '0')) @endphp
+            @php $selected = old('librarian-udsm', ($editing ? $clearance->{'librarian-udsm'} : '0')) @endphp
             <option value="0" {{ $selected == '0' ? 'selected' : '' }} >0</option>
             <option value="1" {{ $selected == '1' ? 'selected' : '' }} >1</option>
         </x-inputs.select>
@@ -84,7 +84,7 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="librarian-cse" label="Librarian Cse">
-            @php $selected = old('librarian-cse', ($editing ? $clearance->librarian-cse : '0')) @endphp
+            @php $selected = old('librarian-cse', ($editing ? $clearance->{'librarian-cse'} : '0')) @endphp
             <option value="0" {{ $selected == '0' ? 'selected' : '' }} >0</option>
             <option value="1" {{ $selected == '1' ? 'selected' : '' }} >1</option>
         </x-inputs.select>
@@ -108,7 +108,7 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="smart-card" label="Smart Card">
-            @php $selected = old('smart-card', ($editing ? $clearance->smart-card : '0')) @endphp
+            @php $selected = old('smart-card', ($editing ? $clearance->{'smart-card'} : '0')) @endphp
             <option value="0" {{ $selected == '0' ? 'selected' : '' }} >0</option>
             <option value="1" {{ $selected == '1' ? 'selected' : '' }} >1</option>
         </x-inputs.select>

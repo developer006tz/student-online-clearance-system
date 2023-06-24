@@ -49,7 +49,7 @@
                     <div class="col-lg-4 col-6">
                         <div class="small-box bg-secondary">
                             <div class="inner">
-                                <h3>{{$clearances->where('status','4')->count()}}<sup style="font-size: 20px"></sup></h3>
+                                <h3>{{$clearance ? $clearance->pending() :  '0'}}<sup style="font-size: 20px"></sup></h3>
 
                                 <p>Pending clearance</p>
                             </div>
@@ -64,7 +64,7 @@
                     <div class="col-lg-4 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{$clearances->where('status','4')->count()}}</h3>
+                                <h3>{{$clearance ? $clearance->cleared() :'0'}}</h3>
 
                                 <p>Complete</p>
                             </div>
@@ -81,7 +81,7 @@
               <div class="card-header">
                 <h3 class="card-title">Previous clearance</h3>
                 <div class="row d-flex justify-content-end my-2">
-                    <a href="{{url("clearances/create")}}" class="btn btn-primary">create new complaint</a>
+                    <a href="{{route('create-clearance.store',$student)}}" class="btn btn-primary">Request clearance</a>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -92,25 +92,53 @@
                         <div class="col-sm-12">
                             <table id="student_clearances_summary" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                   <thead>
-                  <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Complain type</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Description</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Solution</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">date submitted</th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status</th></tr>
+                  <tr role="row">
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">student</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Level</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Wadern</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Librarian-Udsm</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Librarian-Cse</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Coordinator</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Principal</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Smart-Card</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Request Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">status</th>
+                </tr>
                   </thead>
                   <tbody>
-                    @forelse($clearances as $complaint)
+                    @forelse($clearances as $clearance)
 
                   <tr class="odd">
-                    <td class="dtr-control sorting_1" tabindex="0">{{ optional($complaint->complainType)->name ??
-                                '-' }}</td>
-                    <td>{!! Str::limit(strip_tags($complaint->description),100) ?? '-' !!}</td>
-                    <td>{!! Str::limit(strip_tags($complaint->solution),100) ?? '-' !!}</td>
-                    <td>{{ \Carbon\Carbon::parse($complaint->date)->format('d/m/Y') ?? '-' }}</td>
+                    <td class="dtr-control sorting_1" tabindex="0">{{ $clearance->student->user->name?? '-' }}</td>
+                     <td class="dtr-control sorting_1" tabindex="0">{{ $clearance->level?? '-' }}</td>
                     <td style="width: 134px;">
-    {!! $complaint->status == '0' ? '<button class="btn btn-warning">pending</button>' : ($complaint->status == '1' ? '<button class="btn btn-secondary">in review</button>' : ($complaint->status ?? '-')) !!}
-</td>
+                        {!! $clearance->wadern == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->wadern == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->wadern ?? '-')) !!}
+                    </td>
+                    <td style="width: 134px;">
+                        {!! $clearance->{'librarian-udsm'} == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->{'librarian-udsm'} == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->{'librarian-udsm'} ?? '-')) !!}
+                    </td>
+                    <td style="width: 134px;">
+                        {!! $clearance->{'librarian-cse'} == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->{'librarian-cse'} == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->{'librarian-cse'} ?? '-')) !!}
+                    </td>
+                    <td style="width: 134px;">
+                        {!! $clearance->coordinator == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->coordinator == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->coordinator ?? '-')) !!}
+                    </td>
+                    <td style="width: 134px;">
+                        {!! $clearance->principal == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->principal == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->principal ?? '-')) !!}
+                    </td>
+                    <td style="width: 134px;">
+                        {!! $clearance->{'smart-card'} == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->{'smart-card'} == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->{'smart-card'} ?? '-')) !!}
+                    </td>
+                    <td>{{ \Carbon\Carbon::parse($clearance->created_at)->format('d/m/Y') ?? '-' }}</td>
+                    <td style="width: 134px;">
+                        {!! $clearance->complated_clears() == false ? '<button class="btn btn-secondary">incomplete</button>' : ($clearance->complated_clears() == true ? '<button class="btn btn-success">cleared</button>' : '<button class="btn btn-info">not started</button>') !!}
+                    </td>
+                    
                   </tr>
                    @empty
                         <tr>
-                            <td colspan="5" class="text-center">
-                                @lang('crud.common.no_items_found')
+                            <td colspan="10" class="text-center">
+                                not requested yet
                             </td>
                         </tr>
                         @endforelse
