@@ -54,6 +54,9 @@
                                 @lang('crud.students.inputs.id_number')
                             </th>
                             <th class="text-left">
+                                @lang('crud.students.inputs.level')
+                            </th>
+                            <th class="text-left">
                                 @lang('crud.students.inputs.block_number')
                             </th>
                             <th class="text-left">
@@ -69,6 +72,7 @@
                         <tr>
                             <td>{{ optional($student->user)->name ?? '-' }}</td>
                             <td>{{ $student->id_number ?? '-' }}</td>
+                            <td>{{ $student->level ?? '-' }}</td>
                             <td>{{ $student->block_number ?? '-' }}</td>
                             <td>{{ $student->room_number ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
@@ -119,7 +123,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 @lang('crud.common.no_items_found')
                             </td>
                         </tr>
@@ -127,7 +131,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5">{!! $students->render() !!}</td>
+                            <td colspan="6">{!! $students->render() !!}</td>
                         </tr>
                     </tfoot>
                 </table>

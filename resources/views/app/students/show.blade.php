@@ -71,20 +71,20 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                             src="{{ asset('assets/images/student.png') }}"
+                             src="{{ $student->user->image ? url(\Storage::url($student->user->image)) : asset('default.png') }}"
                              alt="User profile picture">
                     </div>
 
-                    <h3 class="profile-username text-center">{{ $student->name ?? '-' }}</h3>
+                    <h3 class="profile-username text-center">{{ $student->user->name ?? '-' }}</h3>
 
                     <p class="text-muted text-center">student</p>
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Name</b> <a class="float-right">{{ $student->user->name ?? '-' }}</a>
-                        </li>
-                        <li class="list-group-item">
                             <b>Id Number</b> <a class="float-right">{{ $student->id_number ?? '-' }}</a>
+                        </li>
+                         <li class="list-group-item">
+                            <b>Level</b> <a class="float-right">{{ $student->level ?? '-' }}</a>
                         </li>
                     </ul>
                     @can('update', $student)
@@ -100,7 +100,7 @@
     <div class="card">
         <div class="card-header p-2">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link nine active" href="#student_birth_info" data-toggle="tab">Student Profile</a></li>
+                <li class="nav-item"><a class="nav-link nine active" href="#student_birth_info" data-toggle="tab">Profile</a></li>
                 <li class="nav-item"><a class="nav-link nine" href="#milestone" data-toggle="tab">Clearance Details</a></li>
             </ul>
         </div><!-- /.card-header -->
@@ -119,40 +119,35 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 30%">Name</th>
-                                        <th>{{ $student->name ?? '-' }}</th>
+                                        <th>{{ $student->user->name ?? '-' }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr >
-                                        <td>Date of Birth</td>
+                                        <td>Id Number</td>
                                         <td>
 
-                                                {{ \Carbon\Carbon::parse($student->birthdate)->format('Y-m-d') ?? '-' }}
+                                          {{ $student->id_number ?? '-' }}
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Time of Birth</td>
+                                        <td>Class Level</td>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($student->birthdate)->format('l H:i:s') ?? '-' }}
+                                            {{-- {{ \Carbon\Carbon::parse($student->birthdate)->format('l H:i:s') ?? '-' }} --}}
+                                            {{ $student->level ?? '-' }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Weight at birth</td>
+                                        <td>Block Number</td>
                                         <td>
-                                            {{ $student->weight_at_birth ?? '-' }}{{__(' Kg')}}
+                                            {{ $student->block_number ?? '-' }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Height at birth</td>
+                                        <td>Room Number</td>
                                         <td>
-                                            {{ $student->height_at_birth ?? '-'}}{{__(' cm')}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Head Circumference at birth</td>
-                                        <td>
-                                            {{ $student->head_circumference ?? '-' }}{{__(' cm')}}
+                                            {{ $student->room_number ?? '-'}}
                                         </td>
                                     </tr>
                                     </tbody>

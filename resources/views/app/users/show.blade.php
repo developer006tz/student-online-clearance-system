@@ -31,7 +31,7 @@
                 <div class="mb-4">
                     <h5>@lang('crud.users.inputs.image')</h5>
                     <x-partials.thumbnail
-                        src="{{ $user->image ? \Storage::url($user->image) : '' }}"
+                        src="{{ $user->image ? url(\Storage::url($user->image)) : asset('default.png') }}"
                         size="150"
                     />
                 </div>

@@ -27,7 +27,7 @@ class ClearanceFactory extends Factory
             'registration_number' => $this->faker->text(255),
             'block_number' => $this->faker->text(255),
             'room_number' => $this->faker->text(255),
-            'level' => '5',
+            'level' => $this->faker->text(4),
             'wadern' => '0',
             'librarian-udsm' => '0',
             'librarian-cse' => '0',

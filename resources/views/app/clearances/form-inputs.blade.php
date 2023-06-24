@@ -56,11 +56,14 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="level" label="Level">
-            @php $selected = old('level', ($editing ? $clearance->level : '')) @endphp
-            <option value="5" {{ $selected == '5' ? 'selected' : '' }} >5</option>
-            <option value="6" {{ $selected == '6' ? 'selected' : '' }} >6</option>
-        </x-inputs.select>
+        <x-inputs.text
+            name="level"
+            label="Level"
+            :value="old('level', ($editing ? $clearance->level : ''))"
+            maxlength="255"
+            placeholder="Level"
+            required
+        ></x-inputs.text>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">

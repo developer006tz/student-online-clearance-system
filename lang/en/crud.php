@@ -22,21 +22,6 @@ return [
         'removed' => 'Successfully removed',
     ],
 
-    'students' => [
-        'name' => 'Students',
-        'index_title' => 'Students List',
-        'new_title' => 'New Student',
-        'create_title' => 'Create Student',
-        'edit_title' => 'Edit Student',
-        'show_title' => 'Show Student',
-        'inputs' => [
-            'user_id' => 'User',
-            'id_number' => 'Id Number',
-            'block_number' => 'Block Number',
-            'room_number' => 'Room Number',
-        ],
-    ],
-
     'users' => [
         'name' => 'Users',
         'index_title' => 'Users List',
@@ -51,29 +36,6 @@ return [
             'username' => 'Username',
             'password' => 'Password',
             'image' => 'Image',
-        ],
-    ],
-
-    'clearances' => [
-        'name' => 'Clearances',
-        'index_title' => 'Clearances List',
-        'new_title' => 'New Clearance',
-        'create_title' => 'Create Clearance',
-        'edit_title' => 'Edit Clearance',
-        'show_title' => 'Show Clearance',
-        'inputs' => [
-            'student_id' => 'Student',
-            'name' => 'Name',
-            'registration_number' => 'Registration Number',
-            'block_number' => 'Block Number',
-            'room_number' => 'Room Number',
-            'level' => 'Level',
-            'wadern' => 'Wadern',
-            'librarian-udsm' => 'Librarian Udsm',
-            'librarian-cse' => 'Librarian Cse',
-            'coordinator' => 'Coordinator',
-            'principal' => 'Principal',
-            'smart-card' => 'Smart Card',
         ],
     ],
 
@@ -106,6 +68,45 @@ return [
             'user_id' => 'User',
             'email' => 'Email',
             'body' => 'Body',
+        ],
+    ],
+
+    'students' => [
+        'name' => 'Students',
+        'index_title' => 'Students List',
+        'new_title' => 'New Student',
+        'create_title' => 'Create Student',
+        'edit_title' => 'Edit Student',
+        'show_title' => 'Show Student',
+        'inputs' => [
+            'user_id' => 'User',
+            'id_number' => 'Id Number',
+            'level' => 'Level',
+            'block_number' => 'Block Number',
+            'room_number' => 'Room Number',
+        ],
+    ],
+
+    'clearances' => [
+        'name' => 'Clearances',
+        'index_title' => 'Clearances List',
+        'new_title' => 'New Clearance',
+        'create_title' => 'Create Clearance',
+        'edit_title' => 'Edit Clearance',
+        'show_title' => 'Show Clearance',
+        'inputs' => [
+            'student_id' => 'Student',
+            'name' => 'Name',
+            'registration_number' => 'Registration Number',
+            'block_number' => 'Block Number',
+            'room_number' => 'Room Number',
+            'level' => 'Level',
+            'wadern' => 'Wadern',
+            'librarian-udsm' => 'Librarian Udsm',
+            'librarian-cse' => 'Librarian Cse',
+            'coordinator' => 'Coordinator',
+            'principal' => 'Principal',
+            'smart-card' => 'Smart Card',
         ],
     ],
 

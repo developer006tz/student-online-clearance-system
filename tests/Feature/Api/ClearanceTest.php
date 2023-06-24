@@ -68,7 +68,7 @@ class ClearanceTest extends TestCase
             'registration_number' => $this->faker->text(255),
             'block_number' => $this->faker->text(255),
             'room_number' => $this->faker->text(255),
-            'level' => '5',
+            'level' => $this->faker->text(255),
             'wadern' => '0',
             'librarian-udsm' => '0',
             'librarian-cse' => '0',

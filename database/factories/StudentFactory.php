@@ -24,6 +24,7 @@ class StudentFactory extends Factory
     {
         return [
             'id_number' => $this->faker->text(255),
+            'level' => 'certificate',
             'block_number' => $this->faker->text(255),
             'room_number' => $this->faker->text(255),
             'user_id' => \App\Models\User::factory(),

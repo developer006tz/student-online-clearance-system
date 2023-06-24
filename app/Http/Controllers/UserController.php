@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -55,8 +56,15 @@ class UserController extends Controller
         $validated['password'] = Hash::make($validated['password']);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('public');
+            $image = $request->file('image');
+            $filename = time().'.jpg';
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(400, 400);
+            $image_resize->encode('jpg',80);
+            $image_resize->save(storage_path('app/public/' . $filename));
+            $validated['image'] = $filename;
         }
+
 
         $user = User::create($validated);
 
@@ -111,7 +119,13 @@ class UserController extends Controller
                 Storage::delete($user->image);
             }
 
-            $validated['image'] = $request->file('image')->store('public');
+            $image = $request->file('image');
+            $filename = time() . '.jpg';
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(400, 400);
+            $image_resize->encode('jpg', 80);
+            $image_resize->save(storage_path('app/public/' . $filename));
+            $validated['image'] = $filename;
         }
 
         $user->update($validated);

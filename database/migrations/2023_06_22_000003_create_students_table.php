@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('id_number');
+            $table->enum('level', ['certificate', 'diploma']);
             $table->string('block_number');
             $table->string('room_number');
 

@@ -73,7 +73,7 @@
                             <td>{{ $user->username ?? '-' }}</td>
                             <td>
                                 <x-partials.thumbnail
-                                    src="{{ $user->image ? \Storage::url($user->image) : '' }}"
+                                    src="{{ $user->image ? url(\Storage::url($user->image)) : asset('default.png') }}"
                                 />
                             </td>
                             <td class="text-center" style="width: 134px;">

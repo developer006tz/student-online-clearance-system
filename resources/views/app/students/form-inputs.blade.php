@@ -27,6 +27,14 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="level" label="Level">
+            @php $selected = old('level', ($editing ? $student->level : '')) @endphp
+            <option value="certificate" {{ $selected == 'certificate' ? 'selected' : '' }} >Certificate</option>
+            <option value="diploma" {{ $selected == 'diploma' ? 'selected' : '' }} >Diploma</option>
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="block_number"
             label="Block Number"

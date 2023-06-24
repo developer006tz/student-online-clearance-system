@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('registration_number');
             $table->string('block_number');
             $table->string('room_number');
-            $table->enum('level', ['5', '6']);
+            $table->string('level');
             $table
                 ->enum('wadern', ['0', '1'])
                 ->default('0')

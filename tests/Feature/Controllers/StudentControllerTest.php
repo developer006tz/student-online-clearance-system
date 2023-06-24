@@ -112,6 +112,7 @@ class StudentControllerTest extends TestCase
 
         $data = [
             'id_number' => $this->faker->text(255),
+            'level' => 'certificate',
             'block_number' => $this->faker->text(255),
             'room_number' => $this->faker->text(255),
             'user_id' => $user->id,
