@@ -10,7 +10,7 @@
         <title>ccs</title>
         
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{{asset('jquery-3.7.0.min.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
@@ -42,17 +42,53 @@
         .nav-icon.icon:before {
             width: 25px;
         }
+
+        #loader {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+    #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
         </style>
 
         
-        <script type="module">
+        {{-- <script type="module">
             import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
-        </script>
+        </script> --}}
         
-        @livewireStyles
+        {{-- @livewireStyles --}}
+        <script>
+         $(document).ready(function() {
+                // show the loader and overlay when the page is loading
+                $('#loader, #overlay').show();
+
+                $('#update-form').on('submit', function(event) {
+                    // show the loader and overlay when the form is submitted
+                    $('#loader, #overlay').show();
+                });
+            });
+
+    </script>
     </head>
     
     <body class="sidebar-mini layout-fixed layout-navbar-fixed ">
+        <div id="overlay" ></div>
+        
+        <div id="loader">
+            <img src="{{asset('loader.svg')}}" alt="Loading...">
+        </div>
         <div id="app" class="wrapper">
             <div class="main-header">
                 @include('layouts.nav')
@@ -67,9 +103,9 @@
 
         @stack('modals')
         
-        @livewireScripts
+        {{-- @livewireScripts --}}
         
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
         
         @stack('scripts')
         
@@ -109,6 +145,12 @@
                     }
                 })
             })
+        </script>
+        <script>
+            $(window).on('load', function() {
+                // hide the loader and overlay when the page has finished loading
+                $('#loader, #overlay').hide();
+            });
         </script>
     </body>
 </html>

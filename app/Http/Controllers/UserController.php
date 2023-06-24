@@ -12,6 +12,8 @@ use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
 use Intervention\Image\Facades\Image;
+use Illuminate\Validation\Rule;
+use App\Models\Message;
 
 class UserController extends Controller
 {
@@ -154,4 +156,122 @@ class UserController extends Controller
             ->route('users.index')
             ->withSuccess(__('crud.common.removed'));
     }
+
+    // edit student profile as well as its user profile
+    public function edit_student_profile(Request $request, User $user): View
+    {
+        $this->authorize('update', $user);
+        $student = $user->student;
+
+        return view('app.students.edit-profile', compact('user', 'student'));
+    }
+
+    // update student profile as well as its user profile
+    public function updateProfile( Request $request, User $user): RedirectResponse
+     {
+        $this->authorize('update', $user);
+        $user_validated = $request->validate(
+            [
+                'name' => ['required', 'max:255', 'string','min:3'],
+                'email' => [
+                    'required',
+                    Rule::unique('users', 'email')->ignore($user->id),
+                    'email',
+                ],
+                'role' => [
+                    'required',
+                    'in:student',
+                ],
+                'username' => [
+                    'required',
+                    Rule::unique('users', 'username')->ignore($user->id),
+                    'max:255',
+                    'string',
+                ],
+                'password' => ['nullable', 'max:255', 'string'],
+                'image' => ['nullable', 'image', 'max:9024'],
+            ]
+        );
+
+
+        $student_validated = $request->validate(
+            [
+                
+                'user_id' => ['required', 'exists:users,id'],
+                'id_number' => ['required', 'max:255', 'string'],
+                'level' => ['required', 'in:certificate,diploma'],
+                'block_number' => ['required', 'max:255', 'string'],
+                'room_number' => ['required', 'max:255', 'string'],
+            ]
+        );
+
+        if (empty($user_validated['password'])) {
+            unset($user_validated['password']);
+        } else {
+            $user_validated['password'] = Hash::make($user_validated['password']);
+        }
+
+        if ($request->hasFile('image')) {
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
+
+            $image = $request->file('image');
+            $filename = time() . '.jpg';
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(400, 400);
+            $image_resize->encode('jpg', 80);
+            $image_resize->save(storage_path('app/public/' . $filename));
+            $user_validated['image'] = $filename;
+        }
+
+        $user->update($user_validated);
+        $student = $user->student;
+        $student->update($student_validated);
+
+        //if user is updated, and if username is updated to the new value send email to alert username change
+        $sms = $this->getSmsBody($user, $request['password']);
+        try {
+            Message::create([
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'body' => $sms,
+            ]);
+            sendEmail($user->email, $user->name, 'PROFILE UPDATED', $sms);
+
+        } catch (\Throwable $th) {
+            $th->getMessage();
+        }
+
+        return redirect()->back()->withSuccess(__('crud.common.saved'));
+            
+    }
+
+    private function getSmsBody($user, $password)
+    {
+        $sms = " ";
+        $warning = "If you did not make this change, please contact the system administrator immediately.\n\n";
+   
+        $footer = "Regards,\n" .
+            "UDSM Online Clearance System\n" .
+            "Mwalimu Julius Nyerere Mlimani Campus\n" .
+            "P.O. Box 35091\n" .
+            "Dar es Salaam, Tanzania\n" .
+            "Tel: +255 754 311 439\n" .
+            "Email:lms@udsm.ac.tz";
+
+        if ($user->wasChanged('username') && $user->wasChanged('password')) {
+            $sms .= "Your username and password have been changed to " . $user->username . " and " . $password . " respectively.\n\n";
+        } elseif ($user->wasChanged('username')) {
+            $sms .= "Your username has been changed to " . $user->username . ".\n\n";
+        } elseif ($user->wasChanged('password')) {
+            $sms .= "Your password has been changed to " . $password . ".\n\n";
+        } else {
+            $sms .= "Your profile has been updated.\n\n";
+        }
+
+        return $sms .$warning. $footer;
+    }
+
+
 }

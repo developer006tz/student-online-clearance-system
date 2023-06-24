@@ -24,12 +24,26 @@
                 </li>
 
                  @can('view-any', App\Models\Student::class)
+                 @if(Auth::user()->hasRole('student'))
+                 @php
+                 $student = Auth::user()->student;
+                 @endphp
+                 @isset($student->id)
+                 <li class="nav-item">
+                                <a href="{{ route('students.show',$student) }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-graduate"></i>
+                                    <p>profile</p>
+                                </a>
+                            </li>
+                    @endisset
+                 @else
                             <li class="nav-item">
                                 <a href="{{ route('students.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>Students</p>
                                 </a>
                             </li>
+                            @endif
                             @endcan
                             @can('view-any', App\Models\User::class)
                             <li class="nav-item">

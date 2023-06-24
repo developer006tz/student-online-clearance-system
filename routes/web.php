@@ -78,6 +78,12 @@ Route::prefix('/')
         Route::get('users/{user}/edit', [UserController::class, 'edit'])->name(
             'users.edit'
         );
+        Route::get('student/{user}/edit', [UserController::class, 'edit_student_profile'])->name(
+            'student-profile.edit'
+        );
+        Route::put('student-update/{user}', [UserController::class, 'updateProfile'])->name(
+            'student-profile.update'
+        );
         Route::put('users/{user}', [UserController::class, 'update'])->name(
             'users.update'
         );

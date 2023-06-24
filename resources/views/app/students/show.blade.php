@@ -88,7 +88,7 @@
                         </li>
                     </ul>
                     @can('update', $student)
-                    <a href="{{ route('students.edit', $student) }}" class="btn btn-success btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
+                    <a href="{{ route('student-profile.edit', $student) }}" class="btn btn-success btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
                         @endcan
                 </div>
                 <!-- /.card-body -->
