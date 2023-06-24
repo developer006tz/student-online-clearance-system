@@ -2,6 +2,9 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12">
+        @if(Auth::user()->hasRole('student'))
+        <x-inputs.hidden name="user_id" :value="Auth::user()->id"></x-inputs.hidden>
+        @else
         <x-inputs.select name="user_id" label="User" required>
             @php $selected = old('user_id', ($editing ? $student->user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
@@ -9,6 +12,7 @@
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
+        @endif
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">

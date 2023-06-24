@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+@auth
+@php 
+$user = Auth::user();
+@endphp
+@if($user->hasRole('student'))
+@include('dashboards.student')
+@else
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -19,5 +27,8 @@
             </div>
         </div>
     </div>
-</div>
+</div>  
+@endif
+@endauth
+    
 @endsection

@@ -53,7 +53,7 @@ class StudentController extends Controller
         $student = Student::create($validated);
 
         return redirect()
-            ->route('students.edit', $student)
+            ->route('home', $student)
             ->withSuccess(__('crud.common.created'));
     }
 

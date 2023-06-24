@@ -33,9 +33,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function students()
+    public function student()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasOne(Student::class);
     }
 
     public function clears()

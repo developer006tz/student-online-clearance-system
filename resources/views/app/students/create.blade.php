@@ -8,7 +8,11 @@
                 <a href="{{ route('students.index') }}" class="mr-4"
                     ><i class="icon ion-md-arrow-back"></i
                 ></a>
+                @if(Auth::user()->hasRole('student'))
+                Complete your student profile
+                @else
                 @lang('crud.students.create_title')
+                @endif
             </h4>
 
             <x-form
@@ -29,7 +33,7 @@
 
                     <button type="submit" class="btn btn-primary float-right">
                         <i class="icon ion-md-save"></i>
-                        @lang('crud.common.create')
+                        submit
                     </button>
                 </div>
             </x-form>
