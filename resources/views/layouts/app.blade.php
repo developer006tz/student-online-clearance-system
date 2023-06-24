@@ -64,18 +64,11 @@
         </style>
 
         
-        {{-- <script type="module">
-            import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
-        </script> --}}
-        
-        {{-- @livewireStyles --}}
         <script>
          $(document).ready(function() {
-                // show the loader and overlay when the page is loading
                 $('#loader, #overlay').show();
 
                 $('#update-form').on('submit', function(event) {
-                    // show the loader and overlay when the form is submitted
                     $('#loader, #overlay').show();
                 });
             });
@@ -102,10 +95,6 @@
         </div>
 
         @stack('modals')
-        
-        {{-- @livewireScripts --}}
-        
-        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
         
         @stack('scripts')
         
@@ -148,7 +137,6 @@
         </script>
         <script>
             $(window).on('load', function() {
-                // hide the loader and overlay when the page has finished loading
                 $('#loader, #overlay').hide();
             });
         </script>
