@@ -96,7 +96,9 @@
             @enderror
         </div>
     </x-inputs.group>
-
+    
+    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                    Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
     <div class="form-group col-sm-12 mt-4">
         <h4>Assign @lang('crud.roles.name')</h4>
 
@@ -113,4 +115,5 @@
         </div>
         @endforeach
     </div>
+    @endif
 </div>

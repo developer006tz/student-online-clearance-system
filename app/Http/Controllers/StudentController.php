@@ -20,9 +20,8 @@ class StudentController extends Controller
     public function index(Request $request): View
     {
         $this->authorize('view-any', Student::class);
-
+        
         $search = $request->get('search', '');
-
         $students = Student::search($search)
             ->latest()
             ->paginate(5)

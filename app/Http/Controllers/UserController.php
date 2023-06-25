@@ -85,7 +85,9 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
-        return view('app.users.show', compact('user'));
+        $role_name = $user->getRoleNames()->first();
+
+        return view('app.users.profile', compact('user','role_name'));
     }
 
     /**
@@ -132,8 +134,10 @@ class UserController extends Controller
         }
 
         $user->update($validated);
-
-        $user->syncRoles($request->roles);
+        if(Auth()->user()->hasRole('super-admin')){
+            $user->syncRoles($request->roles);
+        }
+        
 
         return redirect()
             ->route('users.edit', $user)

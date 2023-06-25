@@ -13,24 +13,16 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle"
-                             src="{{ $student->user->image ? url(\Storage::url($student->user->image)) : asset('default.png') }}"
+                             src="{{ $user->image ? url(\Storage::url($user->image)) : asset('default.png') }}"
                              alt="User profile picture">
                     </div>
 
-                    <h3 class="profile-username text-center">{{ $student->user->name ?? '-' }}</h3>
+                    <h3 class="profile-username text-center">{{ $user->name ?? '-' }}</h3>
 
-                    <p class="text-muted text-center">student</p>
+                    <p class="text-muted text-center"> <span class="badge badge-primary">{{$role_name ?? '-'}}</span> </p>
 
-                    <ul class="list-group list-group-unbordered mb-3">
-                        <li class="list-group-item">
-                            <b>Id Number</b> <a class="float-right">{{ $student->id_number ?? '-' }}</a>
-                        </li>
-                         <li class="list-group-item">
-                            <b>Level</b> <a class="float-right">{{ $student->level ?? '-' }}</a>
-                        </li>
-                    </ul>
-                    @can('update', $student)
-                    <a href="{{ route('student-profile.edit', $student) }}" class="btn btn-primary btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
+                    @can('update', $user)
+                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
                         @endcan
                 </div>
                 <!-- /.card-body -->
@@ -52,7 +44,7 @@
                     <div class="post">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">student Birth details</h3>
+                                <h3 class="card-title">Your Infos</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -60,35 +52,23 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 30%">Name</th>
-                                        <th>{{ $student->user->name ?? '-' }}</th>
+                                        <th>{{ $user->name ?? '-' }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr >
-                                        <td>Id Number</td>
+                                        <td>Role</td>
                                         <td>
 
-                                          {{ $student->id_number ?? '-' }}
+                                          {{ $role_name ?? '-' }}
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Class Level</td>
+                                        <td>username</td>
                                         <td>
-                                            {{-- {{ \Carbon\Carbon::parse($student->birthdate)->format('l H:i:s') ?? '-' }} --}}
-                                            {{ $student->level ?? '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Block Number</td>
-                                        <td>
-                                            {{ $student->block_number ?? '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Room Number</td>
-                                        <td>
-                                            {{ $student->room_number ?? '-'}}
+                                            {{-- {{ \Carbon\Carbon::parse($birthdate)->format('l H:i:s') ?? '-' }} --}}
+                                            {{ $user->username ?? '-' }}
                                         </td>
                                     </tr>
                                     </tbody>
