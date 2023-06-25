@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ __('Password') }} <span class="login-danger">*</span></label>
-                                <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control pass-input @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
                                 <span class="profile-views feather-eye toggle-password"></span>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ __('Confirm Password') }}<span class="login-danger">*</span></label>
-                                <input id="password-confirm" type="password" class="form-control pass-confirm" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control pass-confirm" name="password_confirmation">
                                 <span class="profile-views feather-eye reg-toggle-password"></span>
                             </div>
                             <div class=" dont-have">Already Registered? <a href="{{route('login')}}">Login</a></div>
@@ -68,20 +68,15 @@
 
                         @push('scripts')
                         <script>
-                            // Get references to the relevant elements
                             const roleSelect = document.querySelector('#role');
                             const passwordGroup = document.querySelector('#password').closest('.form-group');
                             const confirmPasswordGroup = document.querySelector('#password-confirm').closest('.form-group');
 
-                            // Add an event listener to the role select element
                             roleSelect.addEventListener('change', function() {
-                            // Check if the selected value is "student"
                             if (this.value === 'student') {
-                                // Hide the password and confirm password fields
                                 passwordGroup.style.display = 'none';
                                 confirmPasswordGroup.style.display = 'none';
                             } else {
-                                // Show the password and confirm password fields
                                 passwordGroup.style.display = 'block';
                                 confirmPasswordGroup.style.display = 'block';
                             }

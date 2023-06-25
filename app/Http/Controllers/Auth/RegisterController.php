@@ -89,11 +89,16 @@ class RegisterController extends Controller
     {
         $password = $this->generatePassword();
         $username = $this->generateUsername($data['email']);
-        if ($data['role'] != 'student') {
+        $role = $data['role'];
+
+        if ($role != 'student') {
+            //check if user with that role exist
+            
              $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'username' => $username,
+                'role'=>$role,
                 'password' => Hash::make($data['password']),
             ]);
         }else{
@@ -101,6 +106,7 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'username' => $username,
+                'role' => $role,
                 'password' => Hash::make($password),
             ]);
         }

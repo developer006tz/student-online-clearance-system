@@ -90,7 +90,7 @@ class ClearController extends Controller
         $clearances = Clearance::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $user_role_name = Auth()->user()->roles->pluck('name')->first();
-        $clear_role = $clear->where('user_id', auth()->user()->id)->first();
+        $clear_role = $clear->where('user_id', auth()->user()->id)->where('clearance_id',$clear->clearance_id)->first();
         return view('app.clears.update-clear', compact('clear', 'clearances', 'users', 'clear_role', 'user_role_name'));
     }
 

@@ -1,5 +1,4 @@
 @php $editing = isset($user) @endphp
-
 <div class="row">
     <x-inputs.group class="col-sm-12">
         <x-inputs.text

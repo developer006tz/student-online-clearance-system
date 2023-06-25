@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -124,7 +125,7 @@ class UserController extends Controller
             $image = $request->file('image');
             $filename = time() . '.jpg';
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->resize(400, 400);
+            $image_resize->resize(132, 132);
             $image_resize->encode('jpg', 80);
             $image_resize->save(storage_path('app/public/' . $filename));
             $validated['image'] = $filename;
@@ -158,11 +159,11 @@ class UserController extends Controller
     }
 
     // edit student profile as well as its user profile
-    public function edit_student_profile(Request $request, User $user): View
+    public function edit_student_profile($student_id): View
     {
+        $student = Student::find($student_id);
+        $user = $student->user;
         $this->authorize('update', $user);
-        $student = $user->student;
-
         return view('app.students.edit-profile', compact('user', 'student'));
     }
 
@@ -219,7 +220,7 @@ class UserController extends Controller
             $image = $request->file('image');
             $filename = time() . '.jpg';
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->resize(400, 400);
+            $image_resize->resize(132, 132);
             $image_resize->encode('jpg', 80);
             $image_resize->save(storage_path('app/public/' . $filename));
             $user_validated['image'] = $filename;
@@ -243,7 +244,7 @@ class UserController extends Controller
             $th->getMessage();
         }
 
-        return redirect()->back()->withSuccess(__('crud.common.saved'));
+        return redirect()->route('students.show',$student)->withSuccess(__('crud.common.saved'));
             
     }
 

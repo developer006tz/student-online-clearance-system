@@ -75,7 +75,6 @@ class StudentController extends Controller
         $this->authorize('update', $student);
 
         $users = User::pluck('name', 'id');
-
         return view('app.students.edit', compact('student', 'users'));
     }
 

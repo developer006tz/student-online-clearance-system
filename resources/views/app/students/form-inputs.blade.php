@@ -2,7 +2,7 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12">
-        <x-inputs.hidden name="user_id" :value="$student->user->id"></x-inputs.hidden>
+        <x-inputs.hidden name="user_id" :value="old('id_number', ($editing ? $student->user->id : Auth::user()->id))"></x-inputs.hidden>
        
     </x-inputs.group>
 

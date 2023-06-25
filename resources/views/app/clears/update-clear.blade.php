@@ -10,72 +10,90 @@
         </div>
     </div>
     <div class="row">
-          <div class="col-12">
+          <div class="col-md-12">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Note:</h5>
               Once you clear This student you can't undo it.
             </div>
+          </div>
 
 
             <!-- Main content -->
-            <div class="invoice p-3 mb-3" id="printable_div">
+            <div class="invoice p-3 mb-3 col-md-12" id="printable_div">
               <!-- title row -->
-              <div class="row">
+              <div class="row d-flex justify-content-center">
                 <div class="col-12">
-                  <h4>
+                  <h4 class="text-center">
                     <img src="{{asset('logo.png')}}" width="120" alt="">
-                    UDSM  STUDENT CLEARANCE FORM
                   </h4>
                 </div>
               </div>
-              <div class="row invoice-info d-flex flex-row justify-content-between">
-                <div class="col-sm-4">
-                  <address>
-                    <strong>Student Name: {{$clear->clearance->name ?? '-'}} </strong><br>
-                    <strong>Reg Number: </strong>{{$clear->clearance->registration_number ?? '-'}}<br>
-                    <strong>Class Level: </strong>{{$clear->clearance->level ?? '-'}}<br>
-                    <strong>Block Number: </strong>{{$clear->clearance->block_number ?? '-'}}<br>
-                    <strong>Room Number: </strong>{{$clear->clearance->room_number ?? '-'}} 
-                  </address>
+              <div class="row">
+                <div class="col-12  d-flex flex-column align-items-center justify-content-between">
+                  <h4 class="text h4 text-bold">
+                    UNIVERSITY OF DAR ES SALAAM
+                  </h4>
+                  <h4 class="text text-bold h4">
+                    COLLEGE OF INFORMATION AND COMMUNICATION TECHNOLOGIES
+                  </h4>
+                  <h4 class="text text-bold h4">
+                    DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+                  </h4>
+                  <h4 class="text text-bold h4">
+                    STUDENT CLEARANCE FORM
+                  </h4>
+                </div>
+              </div>
+              <div class="row invoice-info d-flex flex-row justify-content-between my-4">
+                <style>
+                    .clear-student-list{
+                        list-style: none;
+                    }
+                    #printable_div{
+                        font-family: Georgia, 'Times New Roman', Times, serif;
+                    }
+                </style>
+                <div class="col-sm-8">
+                  <ul class="clear-form-student-info">
+                    <li class="mb-1 clear-student-list" ><strong class="p-2">Student Name: </strong> <span>{{$clear->clearance->name ?? '-'}} </span></li>
+                    <li class="mb-1 clear-student-list" ><strong class="p-2">Reg Number: </strong><span>{{$clear->clearance->registration_number ?? '-'}}</span></li>
+                    <li class="mb-1 clear-student-list" ><strong class="p-2">Block/Hall Number: </strong> <span>{{$clear->clearance->block_number ?? '-'}}</span> <strong>  Room Number: </strong> <span>{{$clear->clearance->room_number ?? '-'}}</span> </li>
+                    <li class="mb-1 clear-student-list" ><strong class="p-2">Class Level: </strong> <span>{{$clear->clearance->level ?? '-'}}</span> </li>
+                  </ul>
                 </div>
                 <div class="col-sm-4">
-                  <img src="{{ $clear->clearance->student->user->image ? url(\Storage::url($clear->clearance->student->user->image)) : asset('default.png') }}" width="150" height="150" style="margin-left: 120px; margin-top:-30px;" alt="{{$clear->clearance->student->user->image}}">
+                  <img src="{{ $clear->clearance->student->user->image ? url(\Storage::url($clear->clearance->student->user->image)) : asset('default.png') }}" width="132" height="132" style="margin-left: 120px; margin-top:-20px;" alt="{{$clear->clearance->student->user->image}}">
                 </div>
               </div>
               @php 
                 $clears = $clear->clearance->clears;
               @endphp
-              <div class="row my-2">
-                <div class="col-12">
-                    <div class="h5 text-center" style="text-transform: capitalize;">Clearance Form For Student {{$clear->clearance->name}} </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 table-responsive">
-                  <table class="table table-striped">
+              <div class="row d-flex justify-content-center">
+                <div class="col-md-11 table-responsive">
+                  <table class="table  table-bordered">
                     <thead>
                     <tr>
-                      <th>role</th>
-                      <th>comment</th>
-                      <th>signature</th>
-                      <th>date</th>
-                      <th>status</th>
+                      <th>NAME</th>
+                      <th>COMMENT</th>
+                      <th>SIGNATURE</th>
+                      <th>DATE</th>
+                      <th>STATUS</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($clears as $clear)
                     <tr>
-                      <td>{{$clear->role ?? '-'}}</td>
-                      <td>{{$clear->comment ?? '-'}}</td>
-                      <td>
+                      <td class="p-4 row-3" >{{ strtoupper($clear->role)  ?? '-'}}</td>
+                      <td class="p-4 row-3">{{$clear->comment ?? '-'}}</td>
+                      <td class="p-4 row-3">
                         @if($clear->signature == 1)
                         <span class="badge badge-primary">signed</span>
                         @else
                         <span class="badge badge-danger">not signed</span>
                         @endif
                       </td>
-                      <td>{{$clear->date ?? '-'}}</td>
-                      <td>
+                      <td class="p-4 row-3">{{ \Carbon\Carbon::parse($clear->date)->format('d/m/Y') ?? '-' }}</td>
+                      <td class="p-4 row-3">
                         @if($clear->status == 1)
                         <span class="badge badge-success">cleared</span>
                         @else
@@ -88,7 +106,7 @@
                   </table>
                 </div>
               </div>
-              <div class="row">
+              <div class="row d-flex justify-content-center">
                 <div class="col-6">
                   <p>
                     <strong>Your Clearance Status: </strong>
@@ -100,7 +118,7 @@
                     @endif
                   </p>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     @if($clear_role->status == 0)
                     <form action="{{route('clears.update', $clear_role)}}" method="POST">
                     @csrf
@@ -161,7 +179,6 @@
               </div>
             </div>
             <!-- /.invoice -->
-          </div><!-- /.col -->
         </div>
 </div>
 

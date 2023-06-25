@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SCS- Login</title>
 
-    <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon/favicon-32x32.png') }}">
+    <link rel="shortcut icon" href="{{ URL::to('logo.png') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/plugins/icons/flags/flags.css') }}">

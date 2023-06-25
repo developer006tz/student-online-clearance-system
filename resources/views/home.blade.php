@@ -9,6 +9,7 @@ $user = Auth::user();
 @if($user->hasRole('student'))
 @include('dashboards.student')
 @else
+@if($user->hasRole('super-admin'))
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -27,7 +28,12 @@ $user = Auth::user();
             </div>
         </div>
     </div>
-</div>  
+</div> 
+@else
+
+@include('dashboards.clearer-dashboard')
+
+@endif 
 @endif
 @endauth
     

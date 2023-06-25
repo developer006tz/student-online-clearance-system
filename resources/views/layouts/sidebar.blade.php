@@ -62,12 +62,27 @@
                             </li>
                             @endcan
                             @can('view-any', App\Models\Clear::class)
+                            @if(Auth::user()->hasRole('student'))
+                            @php
+                            $student = Auth::user()->student;
+                            @endphp
+                            @isset($student->id)
+                            <li class="nav-item">
+                                <a href="{{ route('clears.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-file-signature"></i>
+                                    <p>Clearance</p>
+                                </a>
+                            </li>
+                            @endisset
+                            @else
+
                             <li class="nav-item">
                                 <a href="{{ route('clears.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-file-signature"></i>
                                     <p>Clears</p>
                                 </a>
                             </li>
+                            @endif
                             @endcan
 
                             @can('view-any', App\Models\Message::class)
