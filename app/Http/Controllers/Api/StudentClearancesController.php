@@ -34,8 +34,8 @@ class StudentClearancesController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'registration_number' => ['required', 'max:255', 'string'],
-            'block_number' => ['required', 'max:255', 'string'],
-            'room_number' => ['required', 'max:255', 'string'],
+            // 'block_number' => ['required', 'max:255', 'string'],
+            // 'room_number' => ['required', 'max:255', 'string'],
             'level' => ['required', 'in:5,6'],
             'hall-wadern' => ['nullable', 'in:0,1'],
             'librarian-udsm' => ['nullable', 'in:0,1'],

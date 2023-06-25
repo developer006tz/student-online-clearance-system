@@ -40,7 +40,7 @@
             :value="old('block_number', ($editing ? $clearance->block_number : ''))"
             maxlength="255"
             placeholder="Block Number"
-            required
+            
         ></x-inputs.text>
     </x-inputs.group>
 
@@ -51,7 +51,7 @@
             :value="old('room_number', ($editing ? $clearance->room_number : ''))"
             maxlength="255"
             placeholder="Room Number"
-            required
+            
         ></x-inputs.text>
     </x-inputs.group>
 

@@ -29,7 +29,7 @@ class UserUpdateRequest extends FormRequest
             ],
             'role' => [
                 'required',
-                'in:student,hall-wadern,librarian-udsm,librarian-cse,principle,smart-card',
+                'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
             ],
             'username' => ['required', 'max:255', 'string'],
             'password' => ['nullable'],

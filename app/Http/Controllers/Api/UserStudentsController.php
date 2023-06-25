@@ -31,8 +31,8 @@ class UserStudentsController extends Controller
 
         $validated = $request->validate([
             'id_number' => ['required', 'max:255', 'string'],
-            'block_number' => ['required', 'max:255', 'string'],
-            'room_number' => ['required', 'max:255', 'string'],
+            // 'block_number' => ['required', 'max:255', 'string'],
+            // 'room_number' => ['required', 'max:255', 'string'],
         ]);
 
         $student = $user->students()->create($validated);

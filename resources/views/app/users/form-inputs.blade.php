@@ -30,7 +30,7 @@
             <option value="hall-wadern" {{ $selected == 'hall-wadern' ? 'selected' : '' }} >Hall wadern</option>
             <option value="librarian-udsm" {{ $selected == 'librarian-udsm' ? 'selected' : '' }} >Librarian udsm</option>
             <option value="librarian-cse" {{ $selected == 'librarian-cse' ? 'selected' : '' }} >Librarian cse</option>
-            <option value="principle" {{ $selected == 'principle' ? 'selected' : '' }} >Principle</option>
+            <option value="principal" {{ $selected == 'principal' ? 'selected' : '' }} >Principal</option>
             <option value="smart-card" {{ $selected == 'smart-card' ? 'selected' : '' }} >Smart card</option>
         </x-inputs.select>
     </x-inputs.group>

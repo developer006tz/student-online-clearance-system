@@ -25,7 +25,7 @@ class UserStoreRequest extends FormRequest
             'email' => ['required', 'unique:users,email', 'email'],
             'role' => [
                 'required',
-                'in:student,hall-wadern,librarian-udsm,librarian-cse,principle,smart-card',
+                'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
             ],
             'username' => ['required', 'max:255', 'string'],
             'password' => ['required'],

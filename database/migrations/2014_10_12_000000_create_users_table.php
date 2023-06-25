@@ -20,7 +20,7 @@ return new class extends Migration {
                 'librarian-udsm',
                 'librarian-cse',
                 'coordinator',
-                'principle',
+                'principal',
                 'smart-card',
                 'admin',
             ]);
