@@ -19,6 +19,7 @@ return new class extends Migration {
                 'hall-wadern',
                 'librarian-udsm',
                 'librarian-cse',
+                'coordinator',
                 'principle',
                 'smart-card',
                 'admin',
