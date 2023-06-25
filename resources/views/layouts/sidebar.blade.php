@@ -64,12 +64,21 @@
                             </li>
                             @endcan
                             @can('view-any', App\Models\Clearance::class)
+                            @if(Auth::user()->hasRole('super-admin'))
                             <li class="nav-item">
                                 <a href="{{ route('clearances.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-id-card"></i>
                                     <p>Clearances</p>
                                 </a>
                             </li>
+                            @else
+                            <li class="nav-item">
+                                <a href="{{route('clears.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-id-card"></i>
+                                    <p>Clearances</p>
+                                </a>
+                            </li>
+                            @endif
                             @endcan
                             @can('view-any', App\Models\Clear::class)
                             @if(Auth::user()->hasRole('student') && !empty(Auth::user()->student))
@@ -80,6 +89,14 @@
                                 <a href="{{ route('student-clearance.show',$student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-file-signature"></i>
                                     <p>Clearance @if($student->clearance && ($student->clearance->complated_clears()==true))<span class="badge badge-secondary">complete</span>@elseif($student->clearance && ($student->clearance->complated_clears()==false)) <span class="badge badge-warning">on-progress</span>@else <span class="badge badge-danger">not requested</span> @endif</p>
+                                </a>
+                            </li>
+                            @endif
+                            @if(Auth::user()->hasRole('super-admin'))
+                            <li class="nav-item">
+                                <a href="{{ route('clears.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-file-signature"></i>
+                                    <p>Clears process</p>
                                 </a>
                             </li>
                             @endif
