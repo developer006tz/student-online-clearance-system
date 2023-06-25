@@ -25,7 +25,6 @@ class ClearUpdateRequest extends FormRequest
             'role' => ['required', 'max:255', 'string'],
             'comment' => ['required', 'max:255', 'string'],
             'signature' => ['required', 'in:0,1'],
-            'date' => ['required', 'date'],
             'status' => ['nullable', 'in:0,1'],
         ];
     }

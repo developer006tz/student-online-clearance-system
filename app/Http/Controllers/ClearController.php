@@ -37,7 +37,7 @@ class ClearController extends Controller
                 ->paginate(5)
                 ->withQueryString();
 
-            return view('app.clears.index', compact('clears', 'search'));
+            return view('app.clears.user-clear', compact('clears', 'search'));
         }
     }
 
@@ -89,8 +89,9 @@ class ClearController extends Controller
 
         $clearances = Clearance::pluck('name', 'id');
         $users = User::pluck('name', 'id');
-
-        return view('app.clears.edit', compact('clear', 'clearances', 'users'));
+        $user_role_name = Auth()->user()->roles->pluck('name')->first();
+        $clear_role = $clear->where('user_id', auth()->user()->id)->first();
+        return view('app.clears.update-clear', compact('clear', 'clearances', 'users', 'clear_role', 'user_role_name'));
     }
 
     /**
@@ -101,13 +102,13 @@ class ClearController extends Controller
         Clear $clear
     ): RedirectResponse {
         $this->authorize('update', $clear);
-
         $validated = $request->validated();
-
+        $validated['date'] = date('Y-m-d');
         $clear->update($validated);
-
+        //update clearance column with name like $validated['role]
+        $clearance = $clear->clearance()->update([$validated['role'] => $validated['status']]);
         return redirect()
-            ->route('clears.edit', $clear)
+            ->route('clears.index', $clear)
             ->withSuccess(__('crud.common.saved'));
     }
 

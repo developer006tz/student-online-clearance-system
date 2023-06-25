@@ -26,7 +26,7 @@ class ClearanceStoreRequest extends FormRequest
             'block_number' => ['required', 'max:255', 'string'],
             'room_number' => ['required', 'max:255', 'string'],
             'level' => ['required', 'max:255', 'string'],
-            'wadern' => ['nullable', 'in:0,1'],
+            'hall-wadern' => ['nullable', 'in:0,1'],
             'librarian-udsm' => ['nullable', 'in:0,1'],
             'librarian-cse' => ['nullable', 'in:0,1'],
             'coordinator' => ['nullable', 'in:0,1'],

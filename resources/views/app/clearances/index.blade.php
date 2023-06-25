@@ -66,7 +66,7 @@
                                 @lang('crud.clearances.inputs.level')
                             </th>
                             <th class="text-left">
-                                @lang('crud.clearances.inputs.wadern')
+                                @lang('crud.clearances.inputs.hall-wadern')
                             </th>
                             <th class="text-left">
                                 @lang('crud.clearances.inputs.librarian-udsm')
@@ -102,7 +102,7 @@
                             <td>{{ $clearance->block_number ?? '-' }}</td>
                             <td>{{ $clearance->room_number ?? '-' }}</td>
                             <td>{{ $clearance->level ?? '-' }}</td>
-                            <td>{{ $clearance->wadern ?? '-' }}</td>
+                            <td>{{ $clearance->{'hall-wadern'} ?? '-' }}</td>
                             <td>{{ $clearance->{'librarian-udsm'} ?? '-' }}</td>
                             <td>{{ $clearance->{'librarian-cse'} ?? '-' }}</td>
                             <td>{{ $clearance->coordinator ?? '-' }}</td>

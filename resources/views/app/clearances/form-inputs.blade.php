@@ -67,8 +67,8 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="wadern" label="Wadern">
-            @php $selected = old('wadern', ($editing ? $clearance->wadern : '0')) @endphp
+        <x-inputs.select name="hall-wadern" label="Wadern">
+            @php $selected = old('hall-wadern', ($editing ? $clearance->{'hall-wadern'} : '0')) @endphp
             <option value="0" {{ $selected == '0' ? 'selected' : '' }} >0</option>
             <option value="1" {{ $selected == '1' ? 'selected' : '' }} >1</option>
         </x-inputs.select>

@@ -112,7 +112,7 @@
                     <td class="dtr-control sorting_1" tabindex="0">{{ $clearance->student->user->name?? '-' }}</td>
                      <td class="dtr-control sorting_1" tabindex="0">{{ $clearance->level?? '-' }}</td>
                     <td style="width: 134px;">
-                        {!! $clearance->wadern == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->wadern == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->wadern ?? '-')) !!}
+                        {!! $clearance->{'hall-wadern'} == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->{'hall-wadern'} == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->{'hall-wadern'} ?? '-')) !!}
                     </td>
                     <td style="width: 134px;">
                         {!! $clearance->{'librarian-udsm'} == '0' ? '<button class="btn btn-warning">pending</button>' : ($clearance->{'librarian-udsm'} == '1' ? '<button class="btn btn-success">cleared</button>' : ($clearance->{'librarian-udsm'} ?? '-')) !!}

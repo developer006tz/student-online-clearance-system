@@ -118,7 +118,7 @@ class ClearanceControllerTest extends TestCase
             'block_number' => $this->faker->text(255),
             'room_number' => $this->faker->text(255),
             'level' => $this->faker->text(255),
-            'wadern' => '0',
+            'hall-wadern' => '0',
             'librarian-udsm' => '0',
             'librarian-cse' => '0',
             'coordinator' => '0',

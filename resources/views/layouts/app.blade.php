@@ -30,6 +30,7 @@
         
         <!-- Icons -->
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 
         @yield('styles')
         
@@ -60,7 +61,14 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9998;
+
+    
 }
+/* @media print {
+      .no_print {
+        display: none !important;
+      }
+    } */
         </style>
 
         
@@ -99,6 +107,7 @@
         @stack('scripts')
         
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
         
         @if (session()->has('success')) 
         <script>

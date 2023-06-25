@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('room_number');
             $table->string('level');
             $table
-                ->enum('wadern', ['0', '1'])
+                ->enum('hall-wadern', ['0', '1'])
                 ->default('0')
                 ->nullable();
             $table

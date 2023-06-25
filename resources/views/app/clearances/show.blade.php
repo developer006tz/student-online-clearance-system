@@ -40,8 +40,8 @@
                     <span>{{ $clearance->level ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.clearances.inputs.wadern')</h5>
-                    <span>{{ $clearance->wadern ?? '-' }}</span>
+                    <h5>@lang('crud.clearances.inputs.hall-wadern')</h5>
+                    <span>{{ $clearance->{'hall-wadern'} ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.clearances.inputs.librarian-udsm')</h5>

@@ -101,7 +101,7 @@ return [
             'block_number' => 'Block Number',
             'room_number' => 'Room Number',
             'level' => 'Level',
-            'wadern' => 'Wadern',
+            'hall-wadern' => 'Wadern',
             'librarian-udsm' => 'Librarian Udsm',
             'librarian-cse' => 'Librarian Cse',
             'coordinator' => 'Coordinator',

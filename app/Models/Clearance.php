@@ -18,7 +18,7 @@ class Clearance extends Model
         'block_number',
         'room_number',
         'level',
-        'wadern',
+        'hall-wadern',
         'librarian-udsm',
         'librarian-cse',
         'coordinator',
