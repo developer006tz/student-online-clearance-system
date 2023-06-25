@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Student;
+use App\Models\Clearance;
+use App\Models\Clear;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -110,5 +112,13 @@ class StudentController extends Controller
         return redirect()
             ->route('students.index')
             ->withSuccess(__('crud.common.removed'));
+    }
+
+    public function student_clearance(Student $student): View
+    {
+        $clearance = Clearance::where('student_id', $student->id)->first();
+        
+        $clears = Clear::where('clearance_id', $clearance->id)->get();
+        return view('app.students.student-clearance-track', compact('student', 'clearance', 'clears'));
     }
 }

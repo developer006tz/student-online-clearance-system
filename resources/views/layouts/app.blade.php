@@ -64,11 +64,15 @@
 
     
 }
-/* @media print {
-      .no_print {
-        display: none !important;
-      }
-    } */
+/* print-styles.css */
+@media print {
+  #printable_div {
+    /* Add your A4 print styles here */
+   /* width: 210mm; /* Width of A4 paper */
+    /*height: 297mm; /* Height of A4 paper */
+  }
+}
+
         </style>
 
         

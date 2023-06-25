@@ -68,18 +68,18 @@
                             @endphp
                             @isset($student->id)
                             <li class="nav-item">
-                                <a href="{{ route('clears.index') }}" class="nav-link">
+                                <a href="{{ route('student-clearance.show',$student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-file-signature"></i>
-                                    <p>Clearance</p>
+                                    <p>Clearance @if($student->clearance && ($student->clearance->complated_clears()==true))<span class="badge badge-secondary">complete</span>@else <span class="badge badge-warning">on-progress</span> @endif</p>
                                 </a>
                             </li>
                             @endisset
                             @else
 
                             <li class="nav-item">
-                                <a href="{{ route('clears.index') }}" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-file-signature"></i>
-                                    <p>Clears</p>
+                                    <p>Clearance<span class="badge badge-secondary">not-requested</span></p>
                                 </a>
                             </li>
                             @endif

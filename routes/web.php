@@ -50,6 +50,13 @@ Route::prefix('/')
             StudentController::class,
             'show',
         ])->name('students.show');
+        //retreive student clearance information
+
+        Route::get('student-clearance/{student}', [
+            StudentController::class,
+            'student_clearance',
+        ])->name('student-clearance.show');
+        //end of retreive student clearance information
         Route::get('students/{student}/edit', [
             StudentController::class,
             'edit',

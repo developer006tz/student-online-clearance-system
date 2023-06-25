@@ -88,7 +88,7 @@
                         </li>
                     </ul>
                     @can('update', $student)
-                    <a href="{{ route('student-profile.edit', $student) }}" class="btn btn-success btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
+                    <a href="{{ route('student-profile.edit', $student) }}" class="btn btn-primary btn-block"><b> <i class="icon ion-md-create"></i> edit</b></a>
                         @endcan
                 </div>
                 <!-- /.card-body -->
@@ -101,7 +101,6 @@
         <div class="card-header p-2">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link nine active" href="#student_birth_info" data-toggle="tab">Profile</a></li>
-                <li class="nav-item"><a class="nav-link nine" href="#milestone" data-toggle="tab">Clearance Details</a></li>
             </ul>
         </div><!-- /.card-header -->
         <div class="card-body">
@@ -163,62 +162,7 @@
                     <!-- /.post -->
                 </div>
                 <!-- /.tab-pane -->
-                <div class="tab-pane" id="milestone">
-                    <!-- The timeline -->
-                   <div class="post">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">student Birth details</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 30%">Name</th>
-                                        <th>{{ $student->name ?? '-' }}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr >
-                                        <td>Date of Birth</td>
-                                        <td>
-
-                                                {{ \Carbon\Carbon::parse($student->birthdate)->format('Y-m-d') ?? '-' }}
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Time of Birth</td>
-                                        <td>
-                                            {{ \Carbon\Carbon::parse($student->birthdate)->format('l H:i:s') ?? '-' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Weight at birth</td>
-                                        <td>
-                                            {{ $student->weight_at_birth ?? '-' }}{{__(' Kg')}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Height at birth</td>
-                                        <td>
-                                            {{ $student->height_at_birth ?? '-'}}{{__(' cm')}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Head Circumference at birth</td>
-                                        <td>
-                                            {{ $student->head_circumference ?? '-' }}{{__(' cm')}}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                    </div>
-                </div>
+             
                 <!-- /.tab-pane -->
 
                 </div>
