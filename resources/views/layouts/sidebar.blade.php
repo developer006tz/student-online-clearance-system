@@ -24,7 +24,7 @@
                 </li>
 
                  @can('view-any', App\Models\Student::class)
-                 @if(Auth::user()->hasRole('student'))
+                 @if(Auth::user()->hasRole('student') && !empty(Auth::user()->student))
                  <li class="nav-item">
                                 <a href="{{ route('students.show',Auth::user()->student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
