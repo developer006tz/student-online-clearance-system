@@ -75,17 +75,6 @@
 
         </style>
 
-        
-        <script>
-         $(document).ready(function() {
-                $('#loader, #overlay').show();
-
-                $('#update-form').on('submit', function(event) {
-                    $('#loader, #overlay').show();
-                });
-            });
-
-    </script>
     </head>
     
     <body class="sidebar-mini layout-fixed layout-navbar-fixed ">
@@ -155,9 +144,22 @@
             })
         </script>
         <script>
-            $(window).on('load', function() {
-                $('#loader, #overlay').hide();
-            });
+    $(document).ready(function() {
+    $('#loader, #overlay').show();
+
+    $(window).on('load', function() {
+        $('#loader, #overlay').hide();
+    });
+
+    setTimeout(function() {
+        $('#loader, #overlay').hide();
+    }, 5000);
+
+    $('#update-form').on('submit', function(event) {
+        $('#loader, #overlay').show();
+    });
+});
+
         </script>
     </body>
 </html>

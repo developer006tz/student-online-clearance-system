@@ -97,9 +97,11 @@
                   <tfoot>
                   </tfoot>
                 </table>
-                            </div>
-            </div></div></div>
-              </div>
+                </div>
+            </div>
+             </div>
+        </div>
+     </div>
               <!-- /.card-body -->
             </div>
                     </div>
