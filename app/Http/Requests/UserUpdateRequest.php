@@ -33,7 +33,7 @@ class UserUpdateRequest extends FormRequest
             ],
             'username' => ['required', 'max:255', 'string'],
             'password' => ['nullable'],
-            'image' => ['nullable', 'image', 'max:1024'],
+            'image' => ['nullable', 'image', 'max:9999'],
             'roles' => 'array',
         ];
     }
