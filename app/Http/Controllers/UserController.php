@@ -154,6 +154,9 @@ class UserController extends Controller
         if ($user->image) {
             Storage::delete($user->image);
         }
+        if($user->messages){
+            $user->messages->delete();
+        }
 
         $user->delete();
 
