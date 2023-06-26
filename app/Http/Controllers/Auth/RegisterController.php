@@ -112,7 +112,7 @@ class RegisterController extends Controller
         }
 
         $role = $data['role'];
-        
+
         if ($role == 'student') {
             $role = 'Student';
             $user->assignRole(Role::findByName('student'));
@@ -139,7 +139,7 @@ class RegisterController extends Controller
             $user->assignRole(Role::findByName('user'));
         }
 
-        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is: $username  and password is:  $password  . Thanks for using UOSCS.";
+        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is: $username  and password is:  $password  . Thanks for using UDSCS.";
         try {
             Message::create([
                 'user_id' => $user->id,
