@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link bg-primary">
         <img src="{{asset('assets/images/logo.png')}}" alt="Vemto Logo" class="brand-image bg-white img-circle">
-        <span class="brand-text font-weight-bold">Online SCS</span>
+        <span class="brand-text font-weight-bold">Online USCS</span>
     </a>
 
     <!-- Sidebar -->
@@ -25,17 +25,12 @@
 
                  @can('view-any', App\Models\Student::class)
                  @if(Auth::user()->hasRole('student'))
-                 @php
-                 $student = Auth::user()->student;
-                 @endphp
-                 @isset($student->id)
                  <li class="nav-item">
                                 <a href="{{ route('students.show',$student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>profile</p>
                                 </a>
                             </li>
-                    @endisset
                  @endif
                  @if(Auth::user()->hasRole('super-admin'))
                    <li class="nav-item">
