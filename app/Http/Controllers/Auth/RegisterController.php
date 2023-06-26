@@ -56,7 +56,6 @@ class RegisterController extends Controller
             return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role'=>['required','unique:users'],
         ]);
         }else{
@@ -113,7 +112,7 @@ class RegisterController extends Controller
         }
 
         $role = $data['role'];
-
+        
         if ($role == 'student') {
             $role = 'Student';
             $user->assignRole(Role::findByName('student'));
