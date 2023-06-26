@@ -26,7 +26,7 @@
                  @can('view-any', App\Models\Student::class)
                  @if(Auth::user()->hasRole('student'))
                  <li class="nav-item">
-                                <a href="{{ route('students.show',$student) }}" class="nav-link">
+                                <a href="{{ route('students.show',Auth::user()->student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>profile</p>
                                 </a>
