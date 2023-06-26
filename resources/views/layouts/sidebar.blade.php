@@ -71,7 +71,8 @@
                                     <p>Clearances</p>
                                 </a>
                             </li>
-                            @else
+                            @endif
+                            @if(!Auth::user()->hasRole('super-admin') && !Auth::user()->hasRole('student'))
                             <li class="nav-item">
                                 <a href="{{route('clears.index')}}" class="nav-link">
                                     <i class="nav-icon fas fa-id-card"></i>
