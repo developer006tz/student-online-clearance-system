@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
         <title>ccs</title>
-        
+        <link rel="shortcut icon" href="{{ URL::to('logo.png') }}">
         <!-- Scripts -->
         <script src="{{asset('jquery-3.7.0.min.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
