@@ -89,7 +89,8 @@
                 
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
-                        <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
                             <table id="student_clearances_summary" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                   <thead>
                   <tr role="row">
@@ -145,7 +146,9 @@
                 </tbody>
                   <tfoot>
                   </tfoot>
-                </table></div></div></div>
+                </table>
+                        </div>
+                    </div></div></div>
               </div>
               <!-- /.card-body -->
             </div>
