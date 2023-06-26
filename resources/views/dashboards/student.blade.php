@@ -84,7 +84,7 @@
                     <div class="col-12">
                         <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Previous clearance</h3>
+                {{-- <h3 class="card-title">Previous clearance</h3> --}}
                 <div class="row d-flex justify-content-end my-2">
                     <a href="{{route('create-clearance.store',$student)}}" class="btn btn-primary">Request clearance</a>
                 </div>
