@@ -32,6 +32,8 @@ class PermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'create students']);
         Permission::create(['name' => 'update students']);
+        
+        Permission::create(['name' => 'list students']);
 
         Permission::create(['name' => 'list messages']);
         Permission::create(['name' => 'view messages']);
@@ -46,7 +48,6 @@ class PermissionsSeeder extends Seeder
         }
 
 
-        Permission::create(['name' => 'list students']);
         Permission::create(['name' => 'delete clearances']);
         Permission::create(['name' => 'delete students']);
         Permission::create(['name' => 'update messages']);
