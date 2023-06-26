@@ -30,6 +30,11 @@
 @endempty
 
 @isset($user->student->id)
+<div class="row mb-3">
+    <div class="col-sm-12 d-flex justify-content-end">
+        Welcome <span class="badge badge-success ml-2" > {{Auth::user()->name}} </span> <span class="badge badge-primary ml-2">{{$role}}</span>
+    </div>
+</div>
 
     <div class="row">
                     <div class="col-lg-4 col-6">
@@ -43,7 +48,7 @@
                             <div class="icon">
                                 <i class="icon fas fa-user-plus"></i>
                             </div>
-                            <a href="#" class="small-box-footer">view your profile<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{route('students.show',$user->student)}}" class="small-box-footer">view your profile<i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-6">

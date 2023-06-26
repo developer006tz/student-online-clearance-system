@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link bg-primary">
         <img src="{{asset('assets/images/logo.png')}}" alt="Vemto Logo" class="brand-image bg-white img-circle">
-        <span class="brand-text font-weight-bold">Online SCS</span>
+        <span class="brand-text font-weight-bold">Online USCS</span>
     </a>
 
     <!-- Sidebar -->
@@ -24,19 +24,14 @@
                 </li>
 
                  @can('view-any', App\Models\Student::class)
-                 @if(Auth::user()->hasRole('student'))
-                 @php
-                 $student = Auth::user()->student;
-                 @endphp
-                 @isset($student->id)
+                 @if(Auth::user()->hasRole('student') && !empty(Auth::user()->student))
                  <li class="nav-item">
-                                <a href="{{ route('students.show',$student) }}" class="nav-link">
+                                <a href="{{ route('students.show',Auth::user()->student) }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>profile</p>
                                 </a>
                             </li>
-                    @endisset
-                 @else
+                 @endif
                  @if(Auth::user()->hasRole('super-admin'))
                    <li class="nav-item">
                                 <a href="{{ route('students.index') }}" class="nav-link">
@@ -44,16 +39,16 @@
                                     <p>Students</p>
                                 </a>
                             </li>
-                            @else 
+                @endif
+                @if(!Auth::user()->hasRole('super-admin') && !Auth::user()->hasRole('student'))
                             <li class="nav-item">
                                 <a href="{{ route('users.show',Auth::user()) }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-graduate"></i>
                                     <p>profile</p>
                                 </a>
                             </li>
-                            @endif
-                            @endif
-                            @endcan
+                @endif
+            @endcan
 
                             @can('view-any', App\Models\User::class)
                             <li class="nav-item">
@@ -71,7 +66,8 @@
                                     <p>Clearances</p>
                                 </a>
                             </li>
-                            @else
+                            @endif
+                            @if(!Auth::user()->hasRole('super-admin') && !Auth::user()->hasRole('student'))
                             <li class="nav-item">
                                 <a href="{{route('clears.index')}}" class="nav-link">
                                     <i class="nav-icon fas fa-id-card"></i>

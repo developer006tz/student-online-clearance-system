@@ -154,7 +154,7 @@ class UserController extends Controller
         if ($user->image) {
             Storage::delete($user->image);
         }
-
+        
         $user->delete();
 
         return redirect()

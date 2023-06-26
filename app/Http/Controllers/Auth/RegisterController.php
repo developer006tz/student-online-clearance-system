@@ -56,7 +56,6 @@ class RegisterController extends Controller
             return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role'=>['required','unique:users'],
         ]);
         }else{
@@ -100,7 +99,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'username' => $username,
                 'role'=>$role,
-                'password' => Hash::make($data['password']),
+                'password' => Hash::make($password),
             ]);
         }else{
              $user =  User::create([
@@ -140,7 +139,7 @@ class RegisterController extends Controller
             $user->assignRole(Role::findByName('user'));
         }
 
-        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is: $username  and password is:  $password  . Thanks for using UOSCS.";
+        $sms = "You are registered as $role in UDSM Online Student Clearance System (UOSCS). Your username is: $username  and password is:  $password  . Thanks for using UDSCS.";
         try {
             Message::create([
                 'user_id' => $user->id,
