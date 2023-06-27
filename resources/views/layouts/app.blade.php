@@ -145,7 +145,7 @@
         </script>
         <script>
     $(document).ready(function() {
-        
+
     $('#loader, #overlay').show();
 
     $(window).on('load', function() {
@@ -161,6 +161,6 @@
     });
 });
 
-        </script>
-    </body>
+  </script>
+</body>
 </html>

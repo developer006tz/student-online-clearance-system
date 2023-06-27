@@ -23,8 +23,8 @@ class StudentStoreRequest extends FormRequest
             'user_id' => ['required', 'exists:users,id'],
             'id_number' => ['required', 'max:255', 'string'],
             'level' => ['required', 'in:certificate,diploma'],
-            // 'block_number' => ['required', 'max:255', 'string'],
-            // 'room_number' => ['required', 'max:255', 'string'],
+            'block_number' => ['max:255'],
+            'room_number' => ['max:255'],
         ];
     }
 }

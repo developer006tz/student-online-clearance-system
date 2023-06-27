@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('student_id');
             $table->string('name');
             $table->string('registration_number');
-            $table->string('block_number');
-            $table->string('room_number');
+            $table->string('block_number')->nullable();
+            $table->string('room_number')->nullable();
             $table->string('level');
             $table
                 ->enum('hall-wadern', ['0', '1'])

@@ -66,8 +66,6 @@ class ClearanceController extends Controller
         ];
 
         $check = Clearance::where('student_id', $student->id)->first();
-        
-
         if($check){
             return redirect()
                 ->route('home')
