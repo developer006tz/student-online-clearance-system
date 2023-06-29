@@ -13,6 +13,7 @@ use App\Models\Clear;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use DB;
+use Exception;
 
 class ClearanceController extends Controller
 {
@@ -75,7 +76,20 @@ class ClearanceController extends Controller
                 DB::transaction(function () use ($data) {
                     $clearance = Clearance::create($data);
                     //for each of the roles on system except student and super-admin create clear in Clear::model
-                    $roles = Role::all()->except([1, 2, 10])->pluck('id', 'name');
+                    $roles = Role::whereNotIn('name', ['super-admin', 'admin', 'student','user'])->pluck('id', 'name');
+                    //check if the role has users and if it does create a clear for each user else return back with error
+                    $allRolesHaveUsers = true;
+                    foreach ($roles as $role_name => $role_id) {
+                        $users = User::whereHas('roles', function ($query) use ($role_id) {
+                            $query->where('id', $role_id);
+                        })->get();
+                        if ($users->isEmpty()) {
+                            $allRolesHaveUsers = false;
+                            break;
+                        }
+                    }
+                    
+                   
                     foreach ($roles as $role_name => $role_id) {
                         $users = User::whereHas('roles', function ($query) use ($role_id) {
                             $query->where('id', $role_id);
@@ -91,6 +105,10 @@ class ClearanceController extends Controller
                         }
                     }
 
+                    if (!$allRolesHaveUsers) {
+                        throw new Exception('No users found for one or more roles');
+                    }
+
                 });
             } catch (\Throwable $th) {
                 return redirect()
@@ -100,7 +118,7 @@ class ClearanceController extends Controller
            
             return redirect()
                 ->route('home')
-                ->with('success', 'Clearance request sent successfully');
+                ->with('success', 'Clearance request created successfully');
 
             }
         }

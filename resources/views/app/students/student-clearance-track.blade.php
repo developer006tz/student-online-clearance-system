@@ -101,7 +101,7 @@
                 <div class="col-6">
                   <p>
                     <strong>Your Clearance Status: </strong>
-                    @if($clearance->complated_clears() == true)
+                    @if($clearance->completed_clears() == true)
                     <span class="badge badge-success">clearance completed</span>
                     @else
                     <span class="badge badge-danger">on-progress</span>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-5"></div>
               </div>
-              @if($clearance->complated_clears() == true)
+              @if($clearance->completed_clears() == true)
              <div class="row d-flex justify-content-center mt-4">
                 <div class="show_certify  col-11"  style="display: none;">
                   <p>
@@ -125,7 +125,7 @@
               @endif
               <div class="row no_print">
                 <div class="col-12">
-                  <button type="button" class="no_print btn btn-primary float-right" id="print_button" style="margin-right: 5px;" @if($clearance->complated_clears() == false) {{__('disabled')}}@endif >
+                  <button type="button" class="no_print btn btn-primary float-right" id="print_button" style="margin-right: 5px;" @if($clearance->completed_clears() == false) {{__('disabled')}}@endif >
                     <i class="fas fa-download"></i> Download Pdf
                   </button>
                 </div>
