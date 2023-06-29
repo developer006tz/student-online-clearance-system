@@ -99,7 +99,7 @@ class ClearanceController extends Controller
                                 'clearance_id' => $clearance->id,
                                 'user_id' => $user->id,
                                 'role' => $role_name,
-                                'comment' => 'No comment',
+                                'comment' => trim('No comment'),
                                 'date' => now(),
                             ]);
                         }
