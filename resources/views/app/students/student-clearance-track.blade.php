@@ -52,7 +52,7 @@
                     <li class="mb-1 clear-student-list" ><strong class="p-2">Student Name: </strong> <span>{{$clearance->name ?? '-'}} </span></li>
                     <li class="mb-1 clear-student-list" ><strong class="p-2">Reg Number: </strong><span>{{$clearance->registration_number ?? '-'}}</span></li>
                     <li class="mb-1 clear-student-list" ><strong class="p-2">Block/Hall Number: </strong> <span>{{$clearance->block_number ?? '-'}}</span> <strong>  Room Number: </strong> <span>{{$clearance->room_number ?? '-'}}</span> </li>
-                    <li class="mb-1 clear-student-list" ><strong class="p-2">Class Level: </strong> <span>{{$clearance->level ?? '-'}}</span> </li>
+                    <li class="mb-1 clear-student-list" ><strong class="p-2">Level: </strong> <span>{{$clearance->level ?? '-'}}</span> </li>
                   </ul>
                 </div>
                 <div class="col-sm-4">

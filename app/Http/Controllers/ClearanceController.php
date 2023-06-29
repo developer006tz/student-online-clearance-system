@@ -76,20 +76,23 @@ class ClearanceController extends Controller
                 DB::transaction(function () use ($data) {
                     $clearance = Clearance::create($data);
                     //for each of the roles on system except student and super-admin create clear in Clear::model
-                    $roles = Role::whereNotIn('name', ['super-admin', 'admin', 'student','user'])->pluck('id', 'name');
+                    $roles = Role::whereNotIn('name', ['super-admin', 'admin', 'student', 'user'])->pluck('id', 'name');
                     //check if the role has users and if it does create a clear for each user else return back with error
-                    $allRolesHaveUsers = true;
+                    $missingRoles = [];
+
                     foreach ($roles as $role_name => $role_id) {
                         $users = User::whereHas('roles', function ($query) use ($role_id) {
                             $query->where('id', $role_id);
                         })->get();
                         if ($users->isEmpty()) {
-                            $allRolesHaveUsers = false;
-                            break;
+                            $missingRoles[] = $role_name;
                         }
                     }
-                    
-                   
+
+                    if (!empty($missingRoles)) {
+                        throw new Exception('No users found for the following roles: ' . implode(', ', $missingRoles));
+                    }
+
                     foreach ($roles as $role_name => $role_id) {
                         $users = User::whereHas('roles', function ($query) use ($role_id) {
                             $query->where('id', $role_id);
@@ -104,18 +107,14 @@ class ClearanceController extends Controller
                             ]);
                         }
                     }
-
-                    if (!$allRolesHaveUsers) {
-                        throw new Exception('No users found for one or more roles');
-                    }
-
                 });
             } catch (\Throwable $th) {
                 return redirect()
                     ->route('home')
-                    ->with('error', 'Clearance request failed');
+                    ->with('error', 'Clearance request failed: ' . $th->getMessage());
             }
-           
+
+
             return redirect()
                 ->route('home')
                 ->with('success', 'Clearance request created successfully');
