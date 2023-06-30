@@ -34,27 +34,28 @@
                         <p class="udsm-address">
                     <span class="contact">Contact</span><br>
                     University of Dar es Salaam<br>
-                    Mwalimu Julius Nyerere Mlimani Campus<br>
                     P.O. Box 35091<br>
-                    Dar es Salaam, Tanzania<br>
-                    <span class="telephone">+255 754 311 439</span><br>
-			<span class="email">lms@udsm.ac.tz</span><br>
+                    Dar es Salaam, Tanzania<br><br>
                 </p>
                     </div>
+                    
                 </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
-                        <h1>Welcome to Online SCS</h1>
-                         @if(request()->routeIs('login'))
-                        <p class="account-subtitle">New User? <a href="{{ route('register') }}">Register</a></p>
-                        @endif
-                        <h2>@yield('heading')</h2>
+                        <p class="h3 text-left">ONLINE   STUDENT</p>
+                        <p class="h4 text-left">CLEARANCE SYSTEM</p>
+                        <h2 class="text-left text-bold">@yield('heading')</h2>
                         @yield('content')
 
                         <div class="login-or">
                             <span class="or-line"></span>
                             <span class="span-or">&nbsp;&nbsp;</span>
                         </div>
+                         @if(request()->routeIs('login'))
+                        <p class="account-subtitle">New User? <a href="{{ route('register') }}">Register</a></p>
+                        @else
+                        <p class="account-subtitle">Already Registered? <a href="{{ route('login') }}">Login</a></p>
+                        @endif
 
                     </div>
                 </div>
