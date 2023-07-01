@@ -20,17 +20,34 @@ class UserStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'max:255', 'string'],
-            'email' => ['required', 'unique:users,email', 'email'],
-            'role' => [
-                'required',
-                'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
-            ],
-            'username' => ['required', 'max:255', 'string'],
-            'password' => ['required'],
-            'image' => ['nullable', 'image', 'max:9999'],
-            'roles' => 'array',
-        ];
+        if($this->role == 'student'){
+            return [
+                'name' => ['required', 'max:255', 'string'],
+                'email' => ['required', 'unique:users,email', 'email'],
+                'role' => [
+                    'required',
+                    'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
+                ],
+                'username' => ['required', 'max:255', 'string'],
+                'password' => ['required'],
+                'image' => ['nullable', 'image', 'max:9999'],
+                'roles' => 'array',
+            ];
+        }else{
+            return [
+                'name' => ['required', 'max:255', 'string'],
+                'email' => ['required', 'unique:users,email', 'email'],
+                'role' => [
+                    'required',
+                    'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
+                    'unique:users,role',
+                ],
+                'username' => ['required', 'max:255', 'string'],
+                'password' => ['required'],
+                'image' => ['nullable', 'image', 'max:9999'],
+                'roles' => 'array',
+            ];
+        }
+        
     }
 }

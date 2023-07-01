@@ -137,7 +137,7 @@
                     </td>
                     <td>{{ \Carbon\Carbon::parse($clearance->created_at)->format('d/m/Y') ?? '-' }}</td>
                     <td style="width: 134px;">
-                        {!! $clearance->complated_clears() == false ? '<button class="btn btn-secondary">incomplete</button>' : ($clearance->complated_clears() == true ? '<button class="btn btn-success">cleared</button>' : '<button class="btn btn-info">not started</button>') !!}
+                        {!! $clearance->completed_clears() == false ? '<button class="btn btn-secondary">incomplete</button>' : ($clearance->completed_clears() == true ? '<button class="btn btn-success">cleared</button>' : '<button class="btn btn-info">not started</button>') !!}
                     </td>
                     
                   </tr>

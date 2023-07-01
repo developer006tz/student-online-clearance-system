@@ -68,6 +68,7 @@ class UserController extends Controller
             $validated['image'] = $filename;
         }
 
+        // check if user with taht role exists
 
         $user = User::create($validated);
 
@@ -106,7 +107,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        UserUpdateRequest $request,
+        UserStoreRequest $request,
         User $user
     ): RedirectResponse {
         $this->authorize('update', $user);
