@@ -42,8 +42,8 @@
                 </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
-                        <p class="h3 text-left">ONLINE   STUDENT</p>
-                        <p class="h4 text-left">CLEARANCE SYSTEM</p>
+                        <p class="h3  text-left">ONLINE   STUDENT</p>
+                        <p class="h3 text-left">CLEARANCE SYSTEM</p>
                         <h2 class="text-left text-bold">@yield('heading')</h2>
                         @yield('content')
 
