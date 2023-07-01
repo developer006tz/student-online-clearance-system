@@ -107,7 +107,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(
-        UserStoreRequest $request,
+        UserUpdateRequest $request,
         User $user
     ): RedirectResponse {
         $this->authorize('update', $user);
