@@ -106,7 +106,7 @@ class ClearController extends Controller
         $validated['date'] = date('Y-m-d');
         $clear->update($validated);
         //update clearance column with name like $validated['role]
-        $clearance = $clear->clearance()->update([$validated['role'] => $validated['status']]);
+        $clear->clearance()->update([$validated['role'] => $validated['status']]);
         return redirect()
             ->route('clears.index', $clear)
             ->withSuccess(__('crud.common.saved'));

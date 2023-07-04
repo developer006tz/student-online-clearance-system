@@ -111,8 +111,6 @@ class RegisterController extends Controller
             ]);
         }
 
-        $role = $data['role'];
-
         if ($role == 'student') {
             $role = 'Student';
             $user->assignRole(Role::findByName('student'));

@@ -145,8 +145,8 @@
                 @auth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="nav-icon icon ion-md-exit text-danger"></i>
-                        <p class="text-danger">{{ __('Logout') }}</p>
+                        <i class="nav-icon icon ion-md-exit text-light"></i>
+                        <p class="text-light">{{ __('Logout') }}</p>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
