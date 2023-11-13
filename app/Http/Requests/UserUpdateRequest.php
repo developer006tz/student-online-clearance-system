@@ -20,21 +20,41 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'max:255', 'string'],
-            'email' => [
+        if ($this->role == 'student') {
+            return [
+                'name' => ['required', 'max:255', 'string'],
+                'email' => [
                 'required',
                 Rule::unique('users', 'email')->ignore($this->user),
                 'email',
             ],
-            'role' => [
+                'role' => [
+                    'required',
+                    'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
+                ],
+                'username' => ['required', 'max:255', 'string'],
+                'password' => ['required'],
+                'image' => ['nullable', 'image', 'max:9999'],
+                'roles' => 'array',
+            ];
+        } else {
+            return [
+                'name' => ['required', 'max:255', 'string'],
+                'email' => [
                 'required',
-                'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
+                Rule::unique('users', 'email')->ignore($this->user),
+                'email',
             ],
-            'username' => ['required', 'max:255', 'string'],
-            'password' => ['nullable'],
-            'image' => ['nullable', 'image', 'max:9999'],
-            'roles' => 'array',
-        ];
+                'role' => [
+                    'required',
+                    'in:student,hall-wadern,librarian-udsm,librarian-cse,principal,smart-card',
+                    'unique:users,role',
+                ],
+                'username' => ['required', 'max:255', 'string'],
+                'password' => ['required'],
+                'image' => ['nullable', 'image', 'max:9999'],
+                'roles' => 'array',
+            ];
+        }
     }
 }

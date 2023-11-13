@@ -64,6 +64,12 @@
 
     
 }
+
+a.disabled {
+    pointer-events: none;
+    color: #6c757d;
+}
+
 /* print-styles.css */
 @media print {
   #printable_div {

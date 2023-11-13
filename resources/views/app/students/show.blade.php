@@ -73,7 +73,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Class Level</td>
+                                        <td>Level</td>
                                         <td>
                                             {{-- {{ \Carbon\Carbon::parse($student->birthdate)->format('l H:i:s') ?? '-' }} --}}
                                             {{ $student->level ?? '-' }}

@@ -68,6 +68,7 @@ class UserController extends Controller
             $validated['image'] = $filename;
         }
 
+        // check if user with taht role exists
 
         $user = User::create($validated);
 

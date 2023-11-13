@@ -78,16 +78,18 @@
                             @endcan
                             @can('view-any', App\Models\Clear::class)
                             @if(Auth::user()->hasRole('student') && !empty(Auth::user()->student))
-                            <?php  
-                                $student = Auth::user()->student;
-                            ?>
-                            <li class="nav-item">
-                                <a href="{{ route('student-clearance.show',$student) }}" class="nav-link">
-                                    <i class="nav-icon fas fa-file-signature"></i>
-                                    <p>Clearance @if($student->clearance && ($student->clearance->complated_clears()==true))<span class="badge badge-secondary">complete</span>@elseif($student->clearance && ($student->clearance->complated_clears()==false)) <span class="badge badge-warning">on-progress</span>@else <span class="badge badge-danger">not requested</span> @endif</p>
-                                </a>
-                            </li>
-                            @endif
+    <?php  
+        $student = Auth::user()->student;
+    ?>
+    <li class="nav-item">
+        <a href="{{ $student->clearance ? route('student-clearance.show',$student) : '#' }}" class="nav-link {{ $student->clearance ? '' : 'disabled' }}">
+            <i class="nav-icon fas fa-file-signature"></i>
+            <p>Clearance @if($student->clearance && ($student->clearance->completed_clears()==true))<span class="badge badge-secondary">complete</span>@elseif($student->clearance && ($student->clearance->completed_clears()==false)) <span class="badge badge-warning">on-progress</span>@else <span class="badge badge-danger">not requested</span> @endif</p>
+        </a>
+    </li>
+@endif
+
+
                             @if(Auth::user()->hasRole('super-admin'))
                             <li class="nav-item">
                                 <a href="{{ route('clears.index') }}" class="nav-link">
@@ -143,8 +145,8 @@
                 @auth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="nav-icon icon ion-md-exit text-danger"></i>
-                        <p class="text-danger">{{ __('Logout') }}</p>
+                        <i class="nav-icon icon ion-md-exit text-light"></i>
+                        <p class="text-light">{{ __('Logout') }}</p>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
