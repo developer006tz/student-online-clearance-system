@@ -67,7 +67,7 @@ class RegisterController extends Controller
             ]);
 
         }
-        
+
     }
 
     private function generatePassword(){
@@ -149,6 +149,7 @@ class RegisterController extends Controller
             sendEmail($user->email, $user->name, 'NEW REGISTRATION', $sms);
 
         } catch (\Throwable $th) {
+            \Log::error($th->getMessage().''.$th->getTraceAsString());
             $th->getMessage();
         }
 

@@ -37,12 +37,13 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
-            'host' => 'vda4400.is.cc',
-            'port' => '587',
-            'encryption' => 'tsl',
-            'username' => 'project@ludovickonyo.com',
-            'password' => 'project2023',
+            'host' => 'socialsmarttech.com',
+            'port' => '25',
+            'encryption' => null,
+            'username' => 'developer@socialsmarttech.com',
+            'password' => '@Esther&Sanga1977',
             'timeout' => null,
+            'verify_peer'=> null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
